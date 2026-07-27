@@ -1,22 +1,65 @@
-<html>
-  <body>
-    <div class="login">  
-<h1>FWI Prediction</h1>
-<!-- <!- Main Input For Receiving Query to our ML --> 
-    <form action="{{ url_for('predict_datapoint')}}" method="post">
-        <input type="text" name="Temperature" placeholder="Temperature" required="required"/><br>
-        <input type="text" name="RH" placeholder="RH" required="required" /><br>
-        <input type="text" name="Ws" placeholder="Ws" required="required" /><br>
-        <input type="text" name="Rain" placeholder="Rain" required="required" /><br>
-        <input type="text" name="FFMC" placeholder="FFMC" required="required" /><br>
-        <input type="text" name="DMC" placeholder="DMC" required="required" /><br>
-        <input type="text" name="ISI" placeholder="ISI" required="required" /><br>
-        <input type="text" name="Classes" placeholder="Classes" required="required" /><br>
-        <input type="text" name="region" placeholder="Region" required="required" /><br>
-        <input type="submit" value="Predict" />
-</form>
-        <h2>
-            The FWI prediction is: {{results}}
-        </h2>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered Fire Weather Index Prediction System">
+    <title>FWI Prediction | Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="glass-container">  
+        <h1>FWI Prediction Model</h1>
+        <p>Enter the meteorological parameters below to predict the Fire Weather Index.</p>
+        
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="Temperature">Temperature (°C)</label>
+                    <input type="text" id="Temperature" name="Temperature" placeholder="e.g. 29" required="required"/>
+                </div>
+                <div class="input-group">
+                    <label for="RH">Relative Humidity (%)</label>
+                    <input type="text" id="RH" name="RH" placeholder="e.g. 57" required="required" />
+                </div>
+                <div class="input-group">
+                    <label for="Ws">Wind Speed (km/h)</label>
+                    <input type="text" id="Ws" name="Ws" placeholder="e.g. 18" required="required" />
+                </div>
+                <div class="input-group">
+                    <label for="Rain">Rain (mm)</label>
+                    <input type="text" id="Rain" name="Rain" placeholder="e.g. 0.0" required="required" />
+                </div>
+                <div class="input-group">
+                    <label for="FFMC">FFMC Index</label>
+                    <input type="text" id="FFMC" name="FFMC" placeholder="e.g. 84.0" required="required" />
+                </div>
+                <div class="input-group">
+                    <label for="DMC">DMC Index</label>
+                    <input type="text" id="DMC" name="DMC" placeholder="e.g. 34.2" required="required" />
+                </div>
+                <div class="input-group">
+                    <label for="ISI">ISI Index</label>
+                    <input type="text" id="ISI" name="ISI" placeholder="e.g. 4.1" required="required" />
+                </div>
+                <div class="input-group">
+                    <label for="Classes">Classes</label>
+                    <input type="text" id="Classes" name="Classes" placeholder="0 or 1" required="required" />
+                </div>
+                <div class="input-group">
+                    <label for="region">Region</label>
+                    <input type="text" id="region" name="region" placeholder="0 or 1" required="required" />
+                </div>
+            </div>
+            
+            <input type="submit" value="Predict FWI" />
+        </form>
+
+        {% if results is defined %}
+        <div class="result-container">
+            <h2>The FWI prediction is: <span>{{ results }}</span></h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
 </html>

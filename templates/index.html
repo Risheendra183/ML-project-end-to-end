@@ -1,1 +1,17 @@
-<h1> welcome to home page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered Fire Weather Index Prediction System">
+    <title>FWI Prediction | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="glass-container hero-container">
+        <h1>Fire Weather Index AI</h1>
+        <p>Predict the Fire Weather Index (FWI) using our advanced Machine Learning model based on meteorological data.</p>
+        <a href="{{ url_for('predict_datapoint') }}" class="btn-primary">Start Prediction</a>
+    </div>
+</body>
+</html>
